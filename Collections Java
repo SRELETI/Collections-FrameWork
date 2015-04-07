@@ -1,0 +1,42 @@
+
+#Why Collections are needed?
+
+Different ways to initialize 10,000 objects in java.
+
+1) declare and initialize 10,000 variables
+2) declare an array of size 10,000.
+
+*Problems with first approach-its a very bad coding practice and dims readability.*
+*Problems with second approach:*
+  1) Fixed size
+  2) Can store only homogeneous items
+  3) No underlying datastructure. So predefined methods. Everything has to be implemented by the programmer.
+  
+*Solution:*
+
+Collections:
+  1) Growable innature
+  2) Homogeneous and hetrogeneous
+  3) Underlying datastructure, So predefined methods.
+
+# Difference Between Arrays and Collections?
+
+*Arrays:*
+  1) Fixed in nature
+  2) Recommended - interms of performance
+  3) Not Recommended - interms of memory
+  4) No predefined methods
+  5) Homogeneous
+  6) Works for both Primitive and objects
+
+*Collections:*
+  1) Growable
+  2) Recommended - interms of memory
+  3) Not Recommended - interms of performance
+  4) Predefined methods
+  5) Hetrogeneous and Homogeneous
+  6) Works for only Objects
+
+*Collection: group of individual objects represented as a single entity.*
+*Collections Framework: classes and interfaces required to represent group of individual objects as a single entity.*
+
