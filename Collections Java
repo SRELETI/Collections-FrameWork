@@ -1,27 +1,27 @@
 
-#Why Collections are needed?
+Why Collections are needed?
 
 Different ways to initialize 10,000 objects in java.
 
 1) declare and initialize 10,000 variables
 2) declare an array of size 10,000.
 
-*Problems with first approach-its a very bad coding practice and dims readability.*
-*Problems with second approach:*
+Problems with first approach-its a very bad coding practice and dims readability.
+Problems with second approach:
   1) Fixed size
   2) Can store only homogeneous items
   3) No underlying datastructure. So predefined methods. Everything has to be implemented by the programmer.
   
-*Solution:*
+Solution:
 
 Collections:
   1) Growable innature
   2) Homogeneous and hetrogeneous
   3) Underlying datastructure, So predefined methods.
 
-# Difference Between Arrays and Collections?
+Difference Between Arrays and Collections?
 
-*Arrays:*
+Arrays:
   1) Fixed in nature
   2) Recommended - interms of performance
   3) Not Recommended - interms of memory
@@ -29,16 +29,16 @@ Collections:
   5) Homogeneous
   6) Works for both Primitive and objects
 
-*Collections:*
+Collections:
   1) Growable
   2) Recommended - interms of memory
   3) Not Recommended - interms of performance
   4) Predefined methods
-  5) Hetrogeneous and Homogeneous
+  5) Hetrogeneous and Homogeneous (In TreeSet and TreeMap, only homogeneous items can be inserted as the elements should be of same type to be comparable)
   6) Works for only Objects
 
-*Collection: group of individual objects represented as a single entity.*
-*Collections Framework: classes and interfaces required to represent group of individual objects as a single entity.*
+Collection: group of individual objects represented as a single entity.
+Collections Framework: classes and interfaces required to represent group of individual objects as a single entity.
 
 Collection vs Collections:
 
@@ -46,6 +46,7 @@ Collection is an interface in the collections framework
 Collections is a utility class for collections. It contains methods for sorting, searching etc.
 
 Interfaces in Collections Framework:
+
 
   1)Collection 
   2)List                 -- Allows Duplicates, preserves insertion order
@@ -78,7 +79,9 @@ Implementations of each Interface:
    1) Enumerator
    2) Iterator
    3) ListIterator
-  
+
+When a collection is printed, then the toString() method is called and the collection is printed.
+
   Methods in Collection Interface:
     It contains the most common methods which are applicable to all the collections, as it is considered as the root interface in the collections framework.
     
@@ -110,3 +113,33 @@ Implementations of each Interface:
     listIterator()
   
 Implementations of List
+  
+  ArrayList:
+    Underlying DS is resizeable array
+    Duplicates allowed
+    Preserves insertion order
+    Hetrogeneous
+    "null" can  be inserted
+ Constructors:
+  
+    ArrayList al = new ArrayList();
+      Creates a list of initial size 10.
+    ArrayList al = new ArrayList(size);
+      Creates a list of initial size "size"
+    ArrayList al = new ArrayList(Collection );
+      Creates a list from the collection.
+    
+    When the arraylist is full, then the list is expanded by creating a new list of size (old_size*3/2)+1 and copying the old elements into the new list.
+   
+  All the collections implement the Serializable and Cloneable interfaces as the collections are used for holding and transfering data over the network.
+  
+  The ArrayList and Vector classes implement RandomAccess interface, as it provides access to any of the elements in same time.
+  
+  When to use ArrayList:
+    If the frequent operation is retrival
+  When not to use ArrayList:
+    If the frequent operation is insertion or deletion
+  
+  
+    
+    
