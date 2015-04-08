@@ -40,3 +40,73 @@ Collections:
 *Collection: group of individual objects represented as a single entity.*
 *Collections Framework: classes and interfaces required to represent group of individual objects as a single entity.*
 
+Collection vs Collections:
+
+Collection is an interface in the collections framework
+Collections is a utility class for collections. It contains methods for sorting, searching etc.
+
+Interfaces in Collections Framework:
+
+  1)Collection 
+  2)List                 -- Allows Duplicates, preserves insertion order
+  3)Set                  -- Doesn't allow duplicates, doesn't preserve insertion order
+  4)SortedSet            -- Doesn't allow duplicates, inserts in some sorted order
+  5)NavigableSortedSet   -- Doesn't allow duplicates, inserts in some sorted order and contains methods for navigating over the set
+  
+  6)Queue                  
+  7)Map                  -- Stores key value pairs.
+  8)SortedMap            -- Stores key value pairs with keys sorted in some order
+  9)NavigableSortedMap   -- Stores key value pairs with keys sorted in some order, and contains methods for navigating over the Set
+
+
+Implementations of each Interface:
+
+  1) List        ---    ArrayList, LinkedList, Vector, Stack
+  2) Set         ---    HashSet, LinkedHashSet
+  3) NavigableSortedSet --- TreeSet
+  4) Queue       ---    PriorityQueue, BlockingQueue
+  5) Map         ---    HashMap, LinkedHashMap, WeakHashMap, IdentityHashMap
+  6) NavigableSortedMap --- TreeMap
+  
+  Utility Classes in Collections Framework:
+  
+   1) Arrays - contains methods to work on array objects
+   2) Collections - contains methods to work on all Collection objects
+   
+   Different Cursors in Collections Framework:
+   
+   1) Enumerator
+   2) Iterator
+   3) ListIterator
+  
+  Methods in Collection Interface:
+    It contains the most common methods which are applicable to all the collections, as it is considered as the root interface in the collections framework.
+    
+    add(Object o)
+    addAll(Collection c)
+    remove(Object o)
+    removeAll(Collection c)
+    clear()
+    retainAll(Collection c)
+    isEmpty()
+    size()
+    contains(Object o)
+    containsAll(Collection c)
+    iterator()
+    toArray()
+
+ Methods in List Interface:
+    It is the child interface of Collection interface. 
+    Underlying DS used is Array.
+    Order is preserved. It is done with the help of array indices
+    
+    add(int index, Object o)
+    addAll(int index, Collection c)
+    remove(int index, Object o)
+    indexOf(Object c)
+    lastIndexOf(Object c)
+    get(int index)
+    set(int index, Object o)
+    listIterator()
+  
+Implementations of List
