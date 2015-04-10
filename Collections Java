@@ -193,5 +193,50 @@ Implementations of List
   The Enumerator, Iterator, ListIterator interfaces are implemented by classes written inside the elements(), iterator() method. 
   
   
+  Set Interface:
+  
+  Set interface doesnt define any new methods
+  
+  Classes implementing set Interface:
+  
+  HashSet:
+    1. underlying datastructure is Hashtable
+    2. Duplicates not allowed
+    3. insertion order not preserved. inserted according to hashCode
+    4. null possible
+    5. Hetrogeneous
+    6. Serializable and Clonable
+    7. Not synchronized
+    
+  Constructors:
+    HashSet st = new HashSet(); Default capacity: 16 load factor:0.75
+    HashSet st = new Hashset(int initialCapacity) Same load factor
+    HashSet st = new HashSet(int initialCapacity, float loadFactor)
+    HashSet st = new HashSet(Collection c) 
+ 
+  LinkedHashSet: 
+    LinkedHashSet can be used if the insertion order has to be preserved.
+    
+    1. Underlying datastructure, hashtable+Linkedlist
+    2. duplicates allowed
+    3. insertion order preserved
+    4. null possible
+    5. hetrogeneous
+    6. Serializable and clonable
+    7. Not Synchronized
+  
+   Ideal datastructure for developing cache based applicatins. Example LRU cache algorithm
+   
+   SortedSet Interface:
+     SortedSet interface implements some specific methods as it sorts the elements in some order. 
+     Default sorting order is ascending for numbers and alphabetical for strings
+     
+     The methods are:
+      first()  - first element in the list
+      last()  - last element in the list
+      headSet() - elements less than given element
+      tailSet() - elements greater than given element
+      subSet() - elements in between the given range
+      Comparator() - returns the sorting order.
     
     
