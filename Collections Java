@@ -140,6 +140,58 @@ Implementations of List
   When not to use ArrayList:
     If the frequent operation is insertion or deletion
   
+  ArrayList is not Synchronized and hence it is not thread safe
+  To get a synchronized ArrayList, we can use the getSerializedList() method in Collections class
+  
+  
+  LinkedList:
+  
+  1) Underlying datastructure is DLL
+  2) Duplicates allowed
+  3) insertion order preserved
+  4) null insertion allowed
+  
+  Constuctors:
+  LinkedList ll = new LinkedList();
+  LinkedList ll2 = new LinkedList(Collection c);
+  
+  Use of LinkedList is most appropriate when the frequent operation is insertion/deletion at a particular index
+  Not recommended, when the frequent operation is retrieval.
+  
+  Linked list implements serializable and clonable interfaces
+  LinkedList doesnt implement RandomAccess and synchronized interfaces. LinkedList is not thread safe
+  
+  Vector:
+  
+  Vector is a legacy class. Everything in vector is similar to ArrayList except that Vector is thread safe i.e, it is synchronized.
+  
+  Vector has a extra constructor apart from the three that are present in ArrayList
+  
+  Vector v = new Vector(int initialCapacity, int incremental);
+  
+  Stack:
+  
+  Stack is a child class of Vector. It has special methods to support LIFO principle. 
+  
+  Cursors in Collections Framework:
+  
+  Enumerator
+  Iterator
+  ListIterator
+  
+  Enumerator enum = legacyClass.elements(); enumerator object can be created by calling the elements method in the legacy classes.
+      Enumerator is applicable only to legacy classes. It has two methods, hasMoreElements, nextElements. It provides read only access on the collection and also moves only in forward direction
+      
+  
+  Iterator itr = Iterator.iterator(); Iterator can be created by calling iterator() method. It is a universal cursor which is applicable to all the collections.
+      Iterator has three methods, hasNext(), next(), remove(). It provides read access and also remove access on the collection. Moves only in forward direction.
+  
+  ListIterator litr = ListIterator.iterator(). Iterator can be by calling iterator() method. it is applicable to only classes implementing List interface. It has readAccess, replace, remove and add access.
+      it moves in forward and backward direction. 
+    
+  
+  The Enumerator, Iterator, ListIterator interfaces are implemented by classes written inside the elements(), iterator() method. 
+  
   
     
     
