@@ -1,0 +1,368 @@
+Constructors vs Methods:
+
+Constructors are also methods, but they have many differences compared to the normal methods in java:
+
+Use:
+
+Constructors are used for creating an instance of the class. In other words, creating an object
+Methods are used for executing some piece of java code
+
+Access Modifiers:
+Constructors like the methods can have any of the four access modifiers, but unlike methods they can't be static,final,synchronized,abstract etc
+
+Return Type: 
+Constructors doesn't have any return type, not even void return type. Whereas, the methods can have any return type
+
+Naming Convention:
+Constructors have the same name as the class and starts with a capital letter, whereas the methods names are description of the action they are performing. They are camelCase letters.
+
+this:
+this in constructors refers to another constructor in the same class. Whereas, this in a method refers to the current class instance(For Static methods, this doesnt make any sense as they deal with class).
+In the constructor, this should be the first line of the constructor.
+
+Super:
+Super is used in the constructor to call the parent class constructor. Whereas, the method uses super to call the overridden method.
+Super should be the first line of the constructor.
+
+Classes with no constructor:
+Compiler will automatically include a default constructor with a super call, if a constructor if not defined explicitly. If the class is extending another class then the super call will
+the constructor of the parent class. Else, all the classes by default will extend Object and hence the super will call the constructor of the object class.
+  
+======================================================================================================================================================================================  
+
+JAVA I/O PACKAGE:
+
+A stream is a continuous flow of anything. In java, IO streams are a core concept. IO streams deal with continuous flow of data. Typically, the data is read from a source and written to 
+a destination. In Java, IO streams can be either byte-based(InputStream and Output Stream) or Character-based(Reader and Writer). 
+
+The data can be read from any source like File, array, Network socket etc..
+
+The IO package provides classes for different purposes like
+
+FileAccess
+Network Access
+Buffer Memory Access
+Inter process Communication(Pipes)
+Filtering
+Buffering
+Parsing
+Reading writing Primitive Data
+
+
+
+Working With Files:
+
+The Java IO package provides classes for working with Files.
+FileInputStream - this class reads the contents of the file as a byte stream
+Similarly FileOutputStream class writes bytes to the file.
+
+FileReader - this class reads the contents of the file as characters
+Similarly FileWriter writes characters to the file
+
+RandomAccessFile, provides random access to the contents of the file. 
+
+The File class in Java.io package provides access to the underlying file system. The existence of a directory, file or length of file etc.. can be done using File class
+
+
+Working With Pipes:
+
+Pipes provide the ability for two threads to communicate with each other.  This is done by the PipedOutputStream and PipedInputStream. Data written to the PipedOutputStream by one thread will be 
+can be read by another thread using PipedInputStream.
+
+Working with bytes/char arrays:
+
+Sometimes, the program has to store the contents in a byte or char array for processing the data. The java IO package classes to read contents of byte or char array.
+The ByteArrayInputStream reads the data from a byte array. The CharArrayReader reads chars from a character array. Similarly, the ByteArrayOutputStream and CharArrayWriter does the same thing.
+
+
+System.in, System.err, System,out
+
+All the above 3 streams are also common sources or destinations of data. They are present in java.lang package. The JVM loads them automatically, you dont have to instantiate them. 
+System.in is a InputStream which is connected to the keyboard input of console programs. 
+System.err is a printStream which outputs the data that you write to it on to the console.
+System.out is a printStream which outputs the data that you write to it on to the console.
+
+This streams can be made to point to write or read from different streams by using setoperator.
+
+
+InputStream is the base class of all the IO input streams. OutputStream is the base class of all the IO output streams. 
+
+Combining Streams: Two or more input streams or output streams can be combined by wrapping one over the other. 
+
+Reader is the base class of all IO readers and Writer is the base class of all IO Writers. The reader and writer reads and writes text data whereas InputStream and OutputStream reads
+and writes byte based data.
+
+FileInputStream: reads data from the file. Two methods read and read(byte[]). second method is useful to improve performance by loading bulk data in to a array then reading from it.
+RandomAccessFile: is used to moving randomly in  a file.
+PipedInputStream: reading data from a pipe
+ByteArrayInputStream: reading data from a byte array
+BufferedInputStream: reads data into a buffer array for processing quickly
+PushbackInputStream: for reading in forward and backward directions
+DatainputStream: For reading primitive data from the file
+
+
+Reader: Base class of all readers. Writer: base class of all writers
+
+InputStreamReader: a class which wraps the InputStream(System.in)
+FileReader: used for reading text from  afile
+PipedReader: used for reading text from the pipe
+CharArrayReader: used for reading char from character array
+BufferedReader: reads text into a buffer for faster processing
+PushBackReader: reads text in both directions
+
+
+Java.util.Scanner vs Java.io 
+
+Scanner parses tokns from the content of the stream, whereas the classes in java.io just reads the streams and doesnt do any parsing. 
+We can pass a InputStream or Reader to a scanner. 
+When compared with BufferedReader, scanner is very slow. 
+
+
+===========================================================================================================================================================
+Java Serialization:
+
+Java Serialization allows us to convert an java Object to a stream that we can send over the network or save into a file or save to the database.
+Deserialization is a process of converting the stream back to java object. 
+
+If you want a class object to be serializable, then it has to implement the Serializable interface. Serializable is a marker interface, it doesnt have any fields or methods to implement.
+
+Serialization process can be implemented by using the ObjectInputStream and ObjectOutputStream.
+To serialize an object, we just have to wrap it with ObjectOutputStream and send it over the network.
+
+If an object property shouldnt be serialized then it can be declared using a Transient keyword. 
+
+Following properties are not serialized:
+Property declared with transient keyword
+Property which is static, as it is not associated with the object. 
+
+Serialization converts an object into stream and also stores metadata related to the object.
+When deserilization is done, this metadata is used.
+
+So deserilization is not affected even if the following changes are made to the serialized class
+
+new properties are added
+Transient property is converted into non-transient. same effect as adding new property.
+Static property is converted into non static property. same as adding new property.
+
+When the above changes are made, deserilization is not affected only if the static final long serialVersionUID is declared for the class.
+If it is not declared, then when changes to the class are done, new UID will be created, so when deserilization is performed a mismatch will occur between prev object and deserializaed object
+
+
+To provide security, the data that is serialized can be made obscure. This is done in two ways 
+
+Implementing Externalizable Interface 
+Implementing Serializable interface.
+
+If the object that is to be serialized has to be made obscure, then the class has to implement Externalizable interface and implement readExternal and writeExternal classes. When the serialization
+process is done, the readExternal method is called internally. 
+Another method is by implementing the readObject and writeObject methods of Serializable interface. This methods will be called during serialization process. 
+
+readObject and writeObject methods are very useful when, we have to serialize a class which is inheriting a super class which is not implementing Serializable interface. If the super class 
+is not implementing Serializable interface, then its properties will not be serialized when the subclass is serialized. So to make super class properties serializable, we have to override
+the readObject and writeObject in subclass and add super class properties here.  
+
+
+========================================================================================================================================================================
+
+JAVA Exception handling:
+
+Java Exception handling enables java applications to handle errors sensibly. When a error occurs, an exception is thrown. The exception has to be caught and dealt properly so that the user
+debug the application based on the error thrown.
+
+Try-Catch-Finally block:
+
+If a method needs to able to throw an exception, it has to declare the exception in the method signature and then include the throw statement. When an exception occurs, all the statements after
+the throw statement will not be executed. The execution resumes in the catch block where the exception is caught. 
+
+The exceptions can be either caught or passed to the calling method. 
+Finally block can be executed irrespective of what happens in the try catch block. If an exception occurs in the finally block it has to be caught or passed to calling method. If a exception occurs
+in try and finally block of the method, the exception occured in the finally will be propagated to the calling method. 
+
+This will make it very difficult to debug the issue, as the root cause is not propagated as exception. This can be dealt by using try with resources. All the declaration made in the 
+try with resources will be closed automatically. 
+Java provides option to catch multiple exceptions using a single catch using the pipe operator. For example catch(SQLException e| IOException e) can be handled using same catch block.
+
+If an exception is caught by a method, then if the method throws exceptions which are subclasses of the exception declared, then all those exceptions will also be caught be the method. 
+Similarly behavior is observed when declaring the throws in the method signature. When designing exception hierarchy for an application, it is always good to have a base exception and all
+exceptions to extend this exception. This way we can include base exception in all the method declarations and catch all exceptions. 
+
+Checked Exceptions vs UnChecked Exceptions:
+
+Differences between unchecked and checked exceptions:
+checked exceptions must be explicitly caught and propagated using try catch finally block. For unchecked exceptions there is no such requirement. They dont have to be caught or thrown. 
+Checked Exceptions extend java.lang.Exception and unchecked extend java.lang.RuntimeException. Functionality wise, both of them are equivalent. 
+
+Compiler enforces catching or propagation of checked exceptions making it harder to forget handling exceptions.
+Unchecked exceptions makes it easier to forget exceptions
+because of propagation of checked exceptions the top classes will have to deal with lot of exception types
+Unchecked exceptions make it difficult to catch exceptions as we dont declare what type of exceptions are thrown. 
+checked exceptions become part of the method signature and make it difficult to add or remove new exceptions from the method in later versions.
+
+
+Exception Wrapping:
+The Exception wrapping wraps catchs an exception and wraps it into exception and throws the new exception. The exception wrapping is used to prevent the upper level classes from knowing every exceptions. 
+
+Fail safe exception handling can be done using the try with resources
+
+Logging Exceptions:
+
+Bottom level
+Middle Level
+Top Level
+
+Class hierarchy :
+
+Throwable 
+
+Error
+Exception
+
+Exception children:
+
+RuntimeException
+IOException
+
+Error children:
+
+OutofMemoryError:
+IOError:
+
+
+=================================================================================================================================
+
+Generics:
+
+Generics where added to specify a way to add concrete types to the general purpose classes and methods which operate on the Object. For example, the collections dealing with objects can be 
+given concrete type using generics. If a list is dealing with objects, then anything can be added to it. While retrieving values from it, we have to type cast it the particular type. This way we can 
+know about a Type mismatch only at run time. This type mismatch can be handled at compile time itself using the generics. 
+An list can be assigned concrete type and only values of that type can be added to list and if other types are added, then the compiler raises errors. 
+
+The generics can be added to other classes also, not just the collections classes. 
+
+Java's generics have  a new for loop, which is also called as for-each loop. for example, 
+
+List<String> list = new ArrayList<String>();
+for(String aString:list)
+	System.out.println(aString);
+This new for loop makes it easier to iterate over the generic collections.
+
+
+======================================================================================================================================
+
+
+JVM Architecture:
+
+Java was made to run on a virtual machine(JVM) for implementing Write once run anywhere. The JVM provides platform independent execution of java bytecode. 
+
+The JVM architecture has three subsections, namely the 
+
+Class Loader subsection
+RunTime Area subsection
+Execution Engine
+
+The java source code is compiled by the java compiler and converted into .class files(bytecode). The Class Loader subsection of the JVM loads the java bytecode files.
+
+The class loader subsection has hierarchical structure. 
+
+Following is the hierarchical structure:
+
+BootStrap class loader
+Extension class loader
+System class Loader
+User defined class loader
+
+The BootStrap class loader is created when the JVM is running. It loads Java API's including the Object classes. 
+The Extension class loader will load all the extension classes like the Java API's. It also loads various security extensions. 
+System class loader: this will load the application classes in the classpath specified by the user.
+
+The Class Loader process involves following stages:
+
+Loading: A class is obtained from the file and stored in the JVM memory.
+Verifying: Verifys if the class is following the Java Language Specifications 
+Preparing: Prepares a data structure which describes the memory required by the classes and indicates the fields,methods and interfaces defined in the class.
+Resolving: Change all symbolic references to direct references
+Initialization: initialize class variables to proper values
+
+
+RunTime Area Subsection:
+
+The Runtime areas is the memory areas assigned when the JVM program runs on the OS. It is divided into 6 areas
+
+PC Register
+JVM stack
+Native method Stack: 
+
+Heap
+Method Area
+Constant pool
+
+Each thread has seperate PC register, JVM stack and Native method stack. Other areas are shared by all threads.
+
+Execution Engine:
+The java bytecode is executed by the execution engine. The execution engine executes one instruction at a time, just like the way the CPU excutes instructions.
+The java bytecode is an intermediate form, it cannot be understood by the execution engine. So it has to be converted to machine code. This is done using two ways 
+
+Interpreter: It reads, interprets and executes the bytecode instructions one by one. It can quickly interpret a bytecode instruction but takes time to execute the interpreted result.
+
+JIT Compiler: JIT compiler is introduced to deal with this disadvantage. The execution engine runs as interpreter first, and at some later point, it is converted to native code by the JIT
+compiler so that it no longer has to interpret the bytecode,but just execute the native code. However, the problem is that, the JIT compiler takes a long to compile, more than the time taken to 
+interpret the instruction one by one. So JIT compiler can be used only if the code is executed multiple times. 
+
+
+============================================================================================================================
+
+JVM memory model 
+
+Performance of a java program can be divided into two parts:
+
+amount of space taken by the program
+amount of time taken by the program
+
+Java handles its memory in two areas. One is stack and the other is heap. New objects are created and memory is allocated in heap. If no reference is available to the object, then
+garbage collector will delete this object and free the memory. The instance variables reside inside the object in which they are declared. 
+
+Stack is where method invocations and local variables are stored. The method that is executing now is always at the top of the stack. it stores the method state of the method, the execution line
+and the values of local variables.
+
+Memory leaks occur if the object is still referred by no longer used. 
+When the outofmemory error occurs, it means that the heap is ran out of memory, the memory size of heap can be set using the Xms and Xmn parameter. 
+
+Lazy initialization is creating an object at a latter point  of time. This is very useful if the object takes up lot of space. 
+
+Strings memory Management:
+
+Strings are the only objects that can be created without using new keyword. The strings can be created using string literals and new keyword.
+All the string literals that are created are stored in a String constant pool. When ever a new string literal is created, it first checks the string constant pool to see if there is
+same string, if so it returns a reference to that string, else it creates a new one. 
+All the string that are created using new keyword are stored in heap. 
+There can be more than one same strings in heap, but not in the string constant pool. 
+ 
+=====================================================================================================================================================================
+
+Strings in JAVA
+
+Strings can be created using two ways:
+
+String literals. 
+new keyword.
+
+String literals can be treated as singleton, as there can be no two strings with same value.
+
+String is immutable, So when ever you try to change a string, a new string is returned.
+String Concatenation performance:
+For example, lets us two strings are concatenated to create a third new string:
+String x = "abc"+"def";
+What happens internally is, a new StringBuilder object is created for abc string, then def is appended to this Stringbuilder and finally the concatenated stringbuilder is converted to String
+
+This operation is very efficient. This becomes even more inefficient, if this is performed in a loop. 
+
+== vs equals method:
+
+The == checks if two strings refer to the same address. equals checks if two strings refer to the same value. 
+
+The reason why String is immutable in java:
+
+Requirement of String constant pool
+for security reasons, used as parameter in many java classes like network connection, opening files etc. If string is mutable, then connection or file will be changed which will lead to issues
+Immutable objects are thread safe. 
+
