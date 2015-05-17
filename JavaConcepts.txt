@@ -366,3 +366,27 @@ Requirement of String constant pool
 for security reasons, used as parameter in many java classes like network connection, opening files etc. If string is mutable, then connection or file will be changed which will lead to issues
 Immutable objects are thread safe. 
 
+========================================================================================================================================================
+
+Static keyword:
+
+Advantages:
+
+Memory is allocated at once in class area during class loading for all the static members. Saves memory. Also, garbage collector doesnt have to worry abt it
+Static is not associated with class and not with any instance of the class.
+
+Disadvantages:
+
+Different instances accessing a static member and modifying it will lead to unexpected behavior.
+
+A static member can be accessed using the class name.
+
+variables, method and nested classes can be static
+
+Final Keyword:
+Final keyword can be applied to a variable, method and class. 
+A reference which is declared final cannot be modified. 
+final variable cannot be modified
+final method cannot be overridden
+final class cannot be inherited.
+
